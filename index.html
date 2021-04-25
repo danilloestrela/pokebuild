@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iColabora</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+</head>
+
+<body>
+  <!-- Modal Edit -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="modalEditPokemon" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editPokemonModalLabel"> Editar Pokemon</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <form action="" method="post" id="pokeEdit">
+              <input type="hidden" class="form-control uniqueID" name="uniqueID">
+
+              <div class="row">
+                <div class="col-md-4">
+
+                  <div class="form-group">
+                    <label for="pokemon" class="form-label">Selecione um pokemon</label>
+                    <select class="form-select pokemon" name="pokemon" required>
+                      <option value="" selected disabled hidden>Selecione um pokemon</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="apelido">Apelido</label>
+                    <input type="text" class="form-control apelido" name="apelido" placeholder="Apelido aqui" required>
+                  </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="abilities" class="form-label text-bold">Selecione uma habilidade</label>
+                    <select class="form-select abilities" multiple="multiple" name="abilities">
+                      <option value="" selected disabled>Selecione um pokemon</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-4 no-gutters">
+                  <div class="sprite"></div>
+                  <div class="types">
+                    <ul></ul>
+                  </div>
+                </div>
+              </div>
+              <br>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar Mudanças</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end modal edit-->
+
+  <div class="container">
+
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="./assets/pokeball.png" alt="pokelogo" style="max-width: 60px;">
+      <h2>Cadastro de Pokemon</h2>
+    </div>
+
+    <form action="" method="post" id="pokeAdd">
+      <div class="row">
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="pokemon" class="form-label">Selecione um pokemon</label>
+            <select class="form-select pokemon" name="pokemon" required>
+              <option value="" selected disabled hidden>Selecione um pokemon</option>
+            </select>
+            <div id="pokemonSelectFeedback" class="invalid-feedback">
+              Por favor, selecione um pokemon.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="apelido">Apelido</label>
+            <input type="text" class="form-control apelido" name="apelido" placeholder="Apelido aqui" required>
+          </div>
+        </div>
+
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="abilities" class="form-label text-bold">Selecione uma habilidade</label>
+            <select class="form-select abilities" multiple="multiple" name="abilities">
+              <option value="" selected disabled>Selecione um pokemon</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-4 no-gutters">
+          <div class="sprite"></div>
+          <div class="types">
+            <ul></ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Cadastrar pokemon</button>
+      </div>
+    </form>
+    <div class="row">
+      <div class="table-responsive" style="margin-top:50px;">
+        <table id="pokemon-table" class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>Ações</th>
+              <th>Nome</th>
+              <th>Pokemon</th>
+              <th>Habilidades</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="./assets/app.js"></script>
+  <style rel="stylesheet" type="text/css">
+    .sprite {
+      text-align: center;
+    }
+
+    .types ul {
+      list-style-type: none;
+    }
+
+    .types li {
+      font-size: 10px;
+      margin-top: 2px;
+      border: 1px solid rgb(5, 5, 5);
+      padding: 0px 13px;
+      text-align: center;
+      -webkit-border-radius: 200px;
+      -moz-border-radius: 200px;
+      border-radius: 200px;
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .icon:hover {
+      border-color: #ff0000;
+      cursor: pointer;
+    }
+  </style>
+</body>
+
+</html>
